@@ -32,7 +32,7 @@ public class UniClass {
 
     public static void selectCountMales(String tableName) {
         MySQLConnector db = new MySQLConnector();
-        final Logger log = LogManager.getLogger(UniClass.class);
+       // final Logger log = LogManager.getLogger(UniClass.class);
         String sqlRequest = String.format("SELECT count(*) FROM %s where sex = 'М';", tableName);
         try {
             ResultSet rs = db.execute(sqlRequest);
