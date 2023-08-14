@@ -14,14 +14,12 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         System.out.println("db.getConnection() = ");
         System.out.println(db.getConnection());
-
         ResultSet rs1 = db.executeRequestWithAnswer("Show tables");
         int columns = rs1.getMetaData().getColumnCount();
         while (rs1.next()) {
             for (int i = 1; i <= columns; i++) {
                 String mysqlTable = rs1.getString(1);
                 if (mysqlTable.equals(tableName)) {
-
                     return true;
                 }
             }
@@ -33,7 +31,6 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("drop table %s;", tableName);
         db.executeRequest(sqlRequest);
-
     }
 
     public static void selectCountMales(String tableName) {
@@ -99,7 +96,6 @@ public class UniClass {
     }
 
     public static void createDB(String tableName, Map<String, String> columns) {
-
         try {
             if (UniClass.isTableExist(tableName)) {
                 UniClass.deleteTable(tableName);
@@ -126,7 +122,6 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-
             }
             System.out.println();
         } catch (SQLException ex) {
@@ -148,7 +143,6 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -179,7 +173,6 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("update %s set id_curator = 4 where id_curator = 1;", tableName);
         db.executeRequest(sqlRequest);
-
     }
 
 

@@ -30,7 +30,6 @@ public class GroupDAO implements Dao<Group, Integer> {
                 statement.setString(2, group.getName());
                 statement.setString(3, group.getId_curator().toString());
                 int rs = statement.executeUpdate();
-
             }
         }
     }
