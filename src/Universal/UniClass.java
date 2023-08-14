@@ -42,8 +42,8 @@ public class UniClass {
             System.out.println();
             System.out.print("Количество студентов (М) - ");
             System.out.println(rs.getString(1));
-            log.info("Количество студентов (М) - ");
-            log.info(rs.getString(1));
+            //log.info("Количество студентов (М) - ");
+            //log.info(rs.getString(1));
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.print("Ошибка выполнения запроса");

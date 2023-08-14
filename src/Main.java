@@ -20,9 +20,9 @@ public class Main {
         UniClass.createDB(GroupDAO.tableName, GroupDAO.columns);
 // fill table Group
         groupDAO.InsertGroup();
-// create table Group
+// create table Curator
         UniClass.createDB(CuratorDAO.tableName, CuratorDAO.columns);
-// fill table Group
+// fill table Curator
         curatorDAO.InsertCurator();
 // show all students, groups, curators
         UniClass.selectFull(StudentDAO.tableName);
