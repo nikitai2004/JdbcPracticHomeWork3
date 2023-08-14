@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        MySQLConnector db = new MySQLConnector();
+        //MySQLConnector db = new MySQLConnector();
         StudentDAO studentDAO = new StudentDAO();
         GroupDAO groupDAO = new GroupDAO();
         CuratorDAO curatorDAO = new CuratorDAO();
@@ -49,5 +49,4 @@ public class Main {
         UniClass.showStudentsFromGroup(name);
 //      или просто запросом UniClass.showStudentsFromGroup(db,"Группа Java");
     }
-
 }

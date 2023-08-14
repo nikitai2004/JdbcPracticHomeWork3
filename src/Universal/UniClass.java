@@ -12,13 +12,16 @@ import java.util.stream.Collectors;
 public class UniClass {
     public static boolean isTableExist(String tableName) throws SQLException {
         MySQLConnector db = new MySQLConnector();
+        System.out.println("db.getConnection() = ");
+        System.out.println(db.getConnection());
+
         ResultSet rs1 = db.executeRequestWithAnswer("Show tables");
         int columns = rs1.getMetaData().getColumnCount();
         while (rs1.next()) {
             for (int i = 1; i <= columns; i++) {
                 String mysqlTable = rs1.getString(1);
                 if (mysqlTable.equals(tableName)) {
-                    db.close();
+
                     return true;
                 }
             }
@@ -30,7 +33,7 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("drop table %s;", tableName);
         db.executeRequest(sqlRequest);
-        db.close();
+
     }
 
     public static void selectCountMales(String tableName) {
@@ -45,7 +48,6 @@ public class UniClass {
             System.out.println(rs.getString(1));
             log.info("Количество студентов (М) - ");
             log.info(rs.getString(1));
-            db.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.print("Ошибка выполнения запроса");
@@ -66,7 +68,6 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -87,7 +88,6 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -110,7 +110,6 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("create table %s (%s);", tableName, convertMapColumnsToString(columns));
         db.executeRequest(sqlRequest);
-        db.close();
     }
 
     public static void showGroupsAndCurators() {
@@ -127,7 +126,7 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-                db.close();
+
             }
             System.out.println();
         } catch (SQLException ex) {
@@ -149,7 +148,7 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-                db.close();
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -170,7 +169,6 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
-                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -181,7 +179,7 @@ public class UniClass {
         MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("update %s set id_curator = 4 where id_curator = 1;", tableName);
         db.executeRequest(sqlRequest);
-        db.close();
+
     }
 
 

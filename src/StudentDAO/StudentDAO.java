@@ -19,6 +19,7 @@ public class StudentDAO implements Dao<Student, Integer> {
     @Override
     public void InsertStudent() throws SQLException {
         MySQLConnector mySQLConnector = new MySQLConnector();
+
         Connection con = mySQLConnector.getConnection();
         StudentList studentList = new StudentList();
         for (int i = 1; i < 16; i++) {
@@ -30,7 +31,7 @@ public class StudentDAO implements Dao<Student, Integer> {
                 statement.setString(3, student.getSex());
                 statement.setString(4, student.getId_group().toString());
                 int rs = statement.executeUpdate();
-                mySQLConnector.close();
+
             }
         }
     }

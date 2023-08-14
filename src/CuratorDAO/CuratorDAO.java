@@ -19,6 +19,7 @@ public class CuratorDAO implements Dao<Curator, Integer> {
     @Override
     public void InsertCurator() throws SQLException {
         MySQLConnector mySQLConnector = new MySQLConnector();
+
         Connection con = mySQLConnector.getConnection();
         CuratorList curatorlist = new CuratorList();
         for (int i = 1; i < 5; i++) {
@@ -28,7 +29,7 @@ public class CuratorDAO implements Dao<Curator, Integer> {
                 statement.setString(1, curator.getId().toString());
                 statement.setString(2, curator.getFio());
                 int rs = statement.executeUpdate();
-                mySQLConnector.close();
+
             }
         }
     }
