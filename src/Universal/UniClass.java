@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 public class UniClass {
     public static boolean isTableExist(String tableName) throws SQLException {
         MySQLConnector db = new MySQLConnector();
-        System.out.println("db.getConnection() = ");
-        System.out.println(db.getConnection());
         ResultSet rs1 = db.executeRequestWithAnswer("Show tables");
         int columns = rs1.getMetaData().getColumnCount();
         while (rs1.next()) {
@@ -128,7 +126,7 @@ public class UniClass {
         }
     }
 
-    public static void showStudentsFromGroup(String group) throws SQLException {
+    public static void showStudentsFromGroup(String group){
         MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод студентов группы: " + group);
