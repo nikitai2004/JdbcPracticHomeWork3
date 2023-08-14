@@ -2,6 +2,7 @@ import GroupDAO.GroupDAO;
 import StudentDAO.StudentDAO;
 import CuratorDAO.CuratorDAO;
 import Universal.UniClass;
+import db.MySQLConnector;
 
 import java.sql.*;
 import java.util.Scanner;

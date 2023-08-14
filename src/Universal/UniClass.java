@@ -4,8 +4,7 @@ import db.MySQLConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -129,7 +128,7 @@ public class UniClass {
         }
     }
 
-    public static void showStudentsFromGroup(String group) {
+    public static void showStudentsFromGroup(String group) throws SQLException {
         MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод студентов группы: " + group);
@@ -174,6 +173,4 @@ public class UniClass {
         String sqlRequest = String.format("update %s set id_curator = 4 where id_curator = 1;", tableName);
         db.executeRequest(sqlRequest);
     }
-
-
 }
