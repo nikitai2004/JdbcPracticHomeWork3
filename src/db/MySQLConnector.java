@@ -43,7 +43,7 @@ public class MySQLConnector implements IDBConnector {
             return statement.executeQuery(request);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Ошибка выполнения SQL запроса!");
+            System.out.println("Ошибка выполнения SQL запроса execute!");
         }
         return null;
     }
@@ -54,7 +54,7 @@ public class MySQLConnector implements IDBConnector {
             return statement.executeUpdate(response);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Ошибка выполнения SQL запроса!");
+            System.out.println("Ошибка выполнения SQL запроса executeUpdate!");
         }
         return 0;
     }
@@ -65,7 +65,7 @@ public class MySQLConnector implements IDBConnector {
             return statement.executeQuery(response);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Ошибка выполнения SQL запроса!");
+            System.out.println("Ошибка выполнения SQL запроса executeRequestWithAnswer!");
         }
         return null;
     }
@@ -75,7 +75,7 @@ public class MySQLConnector implements IDBConnector {
             statement.execute(request);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Ошибка выполнения SQL запроса!");
+            System.out.println("Ошибка выполнения SQL запроса executeRequest!");
         }
     }
 

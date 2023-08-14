@@ -1,6 +1,5 @@
 package Universal;
 
-import StudentDAO.StudentDAO;
 import db.MySQLConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,13 +10,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UniClass {
-    public static boolean isTableExist(String tableName, MySQLConnector db) throws SQLException {
+    public static boolean isTableExist(String tableName) throws SQLException {
+        MySQLConnector db = new MySQLConnector();
         ResultSet rs1 = db.executeRequestWithAnswer("Show tables");
         int columns = rs1.getMetaData().getColumnCount();
         while (rs1.next()) {
             for (int i = 1; i <= columns; i++) {
                 String mysqlTable = rs1.getString(1);
                 if (mysqlTable.equals(tableName)) {
+                    db.close();
                     return true;
                 }
             }
@@ -25,12 +26,15 @@ public class UniClass {
         return false;
     }
 
-    public static void deleteTable(String tableName, MySQLConnector db) {
+    public static void deleteTable(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("drop table %s;", tableName);
         db.executeRequest(sqlRequest);
+        db.close();
     }
 
-    public static void selectCountMales(MySQLConnector db, String tableName) {
+    public static void selectCountMales(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         final Logger log = LogManager.getLogger(UniClass.class);
         String sqlRequest = String.format("SELECT count(*) FROM %s where sex = 'М';", tableName);
         try {
@@ -41,13 +45,15 @@ public class UniClass {
             System.out.println(rs.getString(1));
             log.info("Количество студентов (М) - ");
             log.info(rs.getString(1));
+            db.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.print("Ошибка выполнения запроса");
         }
     }
 
-    public static void showStudentsFemales(MySQLConnector db, String tableName) {
+    public static void showStudentsFemales(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод студенток:");
         System.out.println("Пол; №; №.гр; ФИО");
@@ -60,13 +66,15 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
+                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void selectFull(MySQLConnector db, String tableName) {
+    public static void selectFull(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод информации о всех студентах включая название группы и имя куратора:");
         System.out.println("№; ФИО студента; Пол;  №.гр; Название группы; № куратора; ФИО куратора");
@@ -79,6 +87,7 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
+                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -89,19 +98,23 @@ public class UniClass {
         return columns.entrySet().stream().map((Map.Entry entry) -> String.format("%s %s", entry.getKey(), entry.getValue())).collect(Collectors.joining(", "));
     }
 
-    public static void createDB(MySQLConnector db, String tableName, Map<String, String> columns) {
+    public static void createDB(String tableName, Map<String, String> columns) {
+
         try {
-            if (UniClass.isTableExist(tableName, db)) {
-                UniClass.deleteTable(tableName, db);
+            if (UniClass.isTableExist(tableName)) {
+                UniClass.deleteTable(tableName);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("create table %s (%s);", tableName, convertMapColumnsToString(columns));
         db.executeRequest(sqlRequest);
+        db.close();
     }
 
-    public static void showGroupsAndCurators(MySQLConnector db) {
+    public static void showGroupsAndCurators() {
+        MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод групп и кураторов: ");
         System.out.println("№ гр.;  Группа ;  Куратор");
@@ -114,6 +127,7 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
+                db.close();
             }
             System.out.println();
         } catch (SQLException ex) {
@@ -121,7 +135,8 @@ public class UniClass {
         }
     }
 
-    public static void showStudentsFromGroup(MySQLConnector db, String group) {
+    public static void showStudentsFromGroup(String group) {
+        MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод студентов группы: " + group);
         System.out.println("№ ;      ФИО     ; пол; № гр.");
@@ -134,13 +149,15 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
+                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void showOneGroupAndCurators(MySQLConnector db, String tableName) {
+    public static void showOneGroupAndCurators(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         System.out.println();
         System.out.println("Вывод информации о студентах 1 группы, и ФИО куратора:");
         System.out.println("№; ФИО студента; Пол;  №.гр; Название группы; № куратора; ФИО куратора");
@@ -153,14 +170,19 @@ public class UniClass {
                     System.out.print(rs.getString(i) + "\t");
                 }
                 System.out.println();
+                db.close();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void changeCur(MySQLConnector db, String tableName) {
+    public static void changeCur(String tableName) {
+        MySQLConnector db = new MySQLConnector();
         String sqlRequest = String.format("update %s set id_curator = 4 where id_curator = 1;", tableName);
         db.executeRequest(sqlRequest);
+        db.close();
     }
+
+
 }

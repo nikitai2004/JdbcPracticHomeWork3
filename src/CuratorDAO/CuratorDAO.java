@@ -28,6 +28,7 @@ public class CuratorDAO implements Dao<Curator, Integer> {
                 statement.setString(1, curator.getId().toString());
                 statement.setString(2, curator.getFio());
                 int rs = statement.executeUpdate();
+                mySQLConnector.close();
             }
         }
     }

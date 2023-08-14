@@ -30,6 +30,7 @@ public class StudentDAO implements Dao<Student, Integer> {
                 statement.setString(3, student.getSex());
                 statement.setString(4, student.getId_group().toString());
                 int rs = statement.executeUpdate();
+                mySQLConnector.close();
             }
         }
     }

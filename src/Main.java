@@ -15,38 +15,38 @@ public class Main {
         CuratorDAO curatorDAO = new CuratorDAO();
 
 // create table Students
-        UniClass.createDB(db, StudentDAO.tableName, StudentDAO.columns);
+        UniClass.createDB(StudentDAO.tableName, StudentDAO.columns);
 // fill table Students
         studentDAO.InsertStudent();
 // create table Group
-        UniClass.createDB(db, GroupDAO.tableName, GroupDAO.columns);
+        UniClass.createDB(GroupDAO.tableName, GroupDAO.columns);
 // fill table Group
         groupDAO.InsertGroup();
 // create table Group
-        UniClass.createDB(db, CuratorDAO.tableName, CuratorDAO.columns);
+        UniClass.createDB(CuratorDAO.tableName, CuratorDAO.columns);
 // fill table Group
         curatorDAO.InsertCurator();
 // show all students, groups, curators
-        UniClass.selectFull(db, StudentDAO.tableName);
+        UniClass.selectFull(StudentDAO.tableName);
 // show count of Students
-        UniClass.selectCountMales(db, StudentDAO.tableName);
+        UniClass.selectCountMales(StudentDAO.tableName);
 // show list Females
-        UniClass.showStudentsFemales(db, StudentDAO.tableName);
+        UniClass.showStudentsFemales(StudentDAO.tableName);
 //      Обновить данные по группе сменив куратора   ============
 //      Распечатаем первую группу с куратором
-        UniClass.showOneGroupAndCurators(db, StudentDAO.tableName);
+        UniClass.showOneGroupAndCurators(StudentDAO.tableName);
 //      Изменить куратора у первой группы
-        UniClass.changeCur(db, GroupDAO.tableName);
+        UniClass.changeCur(GroupDAO.tableName);
 //      Распечатаем группу с куратором для проверки
-        UniClass.showOneGroupAndCurators(db, StudentDAO.tableName);
+        UniClass.showOneGroupAndCurators(StudentDAO.tableName);
 //      Завершено - Обновить данные по группе сменив куратора   ============
 //      Вывести список групп с их кураторами
-        UniClass.showGroupsAndCurators(db);
+        UniClass.showGroupsAndCurators();
 //      Используя вложенные запросы вывести на экран студентов из определенной группы(поиск по имени группы)
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите название группы, например - \"Группа SQL\" или \"Группа Java\" (без кавычек)");
         String name = sc.nextLine();
-        UniClass.showStudentsFromGroup(db, name);
+        UniClass.showStudentsFromGroup(name);
 //      или просто запросом UniClass.showStudentsFromGroup(db,"Группа Java");
     }
 
