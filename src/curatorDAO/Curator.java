@@ -1,4 +1,4 @@
-package CuratorDAO;
+package curatorDAO;
 
 public class Curator {
 

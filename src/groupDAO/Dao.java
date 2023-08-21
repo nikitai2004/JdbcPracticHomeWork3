@@ -1,4 +1,4 @@
-package GroupDAO;
+package groupDAO;
 
 import java.sql.SQLException;
 

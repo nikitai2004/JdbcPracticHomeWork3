@@ -1,4 +1,4 @@
-package StudentDAO;
+package studentDAO;
 
 import db.MySQLConnector;
 

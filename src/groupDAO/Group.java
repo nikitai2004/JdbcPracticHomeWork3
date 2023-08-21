@@ -1,4 +1,4 @@
-package GroupDAO;
+package groupDAO;
 
 public class Group {
 

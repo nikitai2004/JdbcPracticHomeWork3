@@ -1,4 +1,4 @@
-package CuratorDAO;
+package curatorDAO;
 
 public class CuratorList {
     Curator newCurator = new Curator();

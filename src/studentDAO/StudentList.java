@@ -1,4 +1,4 @@
-package StudentDAO;
+package studentDAO;
 
 public class StudentList {
     Student newStudent = new Student();

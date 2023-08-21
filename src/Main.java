@@ -1,7 +1,7 @@
-import GroupDAO.GroupDAO;
-import StudentDAO.StudentDAO;
-import CuratorDAO.CuratorDAO;
-import Universal.UniClass;
+import groupDAO.GroupDAO;
+import studentDAO.StudentDAO;
+import curatorDAO.CuratorDAO;
+import universal.UniClass;
 
 import java.sql.*;
 import java.util.Scanner;

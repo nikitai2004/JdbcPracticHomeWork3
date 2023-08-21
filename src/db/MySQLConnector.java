@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Map;
 
 public class MySQLConnector implements IDBConnector {
-    public static Connection connection = null;
+    private static Connection connection = null;
     private static Statement statement = null;
     private final Map<String, String> settings = new PropertiesReader().read();
 
